@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <!-- Inherit our applications main module.                      -->
+  <inherits name='my.utm.cairo.prototype.RtuPM'/>
+
+  <!-- Specify the path to any remote services.                   -->
+  <servlet path="/rtupm/greet" class="my.utm.cairo.prototype.server.GreetingServiceImpl" />
+
+</module>
