@@ -1,8 +1,4 @@
-Initial commit of rtu-power-monitoring from mercurial to git dvcs 
+Modify README.md
 
-Reason? 
-* Git is faster than mercurial 
-* Git have cheap branches and rebase 
-* Git is more documented 
-* Github is cool 
-* Cleaning previous repository 
+Add Repository Structure inside README.md to give some details on how
+the branches will be
