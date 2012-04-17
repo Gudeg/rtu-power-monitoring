@@ -5,7 +5,7 @@ class Test extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->output->enable_profiler(false);
+        $this->output->enable_profiler(true);
     }
 
     public function simple_json() { 
@@ -50,4 +50,3 @@ class Test extends CI_Controller {
         $this->output->set_output($limit);
     }
 }
-?>

@@ -17,3 +17,6 @@
 [29-Mar-2012 15:00:51 UTC] PHP Parse error:  syntax error, unexpected T_AS, expecting ';' in /Users/TheFruit/Project/rtu-power-monitoring-prototype/Backend/CodeIgniter/application/controllers/test.php on line 19
 [12-Apr-2012 05:44:51 UTC] PHP Parse error:  syntax error, unexpected ':', expecting ')' in /Users/TheFruit/Project/rtu-power-monitoring-prototype/Backend/CodeIgniter/application/controllers/test.php on line 35
 [12-Apr-2012 07:30:01 UTC] PHP Parse error:  syntax error, unexpected T_ARRAY, expecting ')' in /Users/TheFruit/Project/rtu-power-monitoring-prototype/Backend/CodeIgniter/application/controllers/test.php on line 43
+[17-Apr-2012 03:24:50 UTC] PHP Fatal error:  Call to undefined function return_json_output() in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/get.php on line 32
+[17-Apr-2012 03:25:31 UTC] PHP Parse error:  syntax error, unexpected T_OBJECT_OPERATOR in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/get.php on line 24
+[17-Apr-2012 04:13:01 UTC] PHP Parse error:  syntax error, unexpected '}' in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 8

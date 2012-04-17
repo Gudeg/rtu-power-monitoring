@@ -19,7 +19,12 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 
+import com.google.gwt.core.client.GWT;
+
 import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.URL;
+
+import com.google.gwt.user.client.Window;
 
 abstract public class BaseFormWidget extends ContentPanel { 
 
@@ -28,6 +33,7 @@ abstract public class BaseFormWidget extends ContentPanel {
     protected Button submit; 
     protected String targetURL;
     protected RequestBuilder rb; 
+    protected String formActionUrl = "post/form/"; 
 
     private int minLength = 6;
     private boolean isPassword = false;
@@ -70,6 +76,7 @@ abstract public class BaseFormWidget extends ContentPanel {
         form.addButton(submit);
         form.setButtonAlign(HorizontalAlignment.CENTER);
         add(form);
+
     }
 
     public KeyListener getValidateKeyListener() {
@@ -113,6 +120,12 @@ abstract public class BaseFormWidget extends ContentPanel {
 
         setFieldProperties(field, label, allowBlank, minLength, isPwd);
 
+    }
+
+    protected void setFormAction(String formName) {
+        formActionUrl += formName;
+        form.setAction(URL.encode(
+            Window.Location.getHost() + "/" + formActionUrl));
     }
 
     protected abstract void validate();

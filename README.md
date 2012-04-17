@@ -12,17 +12,13 @@ There will be several (still proposal) branches:
 * **client-primitive** (Non-js)
 * **backend** (PHP)
 
-* **bleeding-edge**
-* **nodejs-backend** (optional)
-* **backbone-client** (optional)
-
 **client**, **client-primitive**, and **backend** will merge into 
 **development** while **development** will merge into **master** during 
 release
 
 **nodejs-backend** and **backbone-client** will merge into **bleeding-edge**.
 It just for fun and practice. However if proved to be useful will be
-merge into **development** and perhaps, **master**
+merge into **development** and perhaps, **master**.
 
 Table 
 ----- 
@@ -140,6 +136,23 @@ CREATE TABLE `users` (
 Design 
 ------
 
+Form: 
+* Before the form loaded, the form is filled with previous entry. The
+  data is received from. 
+
+    /get/prev/network-setting-form 
+    /get/prev/port-forwarding-form
+
+    which nginx will 
+
+* Each form will post into something like /post/widget-name. Eg:
+
+    /post/network-setting-form
+        -> /index.php/post/networkSettingsForm
+
+    /post/portforwarding-form
+        -> /index.php/post/portForwardingForm
+
 DataGrid request: 
 
     *DataGrid* will request from: 
@@ -149,3 +162,12 @@ DataGrid request:
     *Nginx* will translate into: 
 
         http://localhost:8000/index.php/get/paging/30 
+
+Secret 
+------
+
+There are several repositories that is made for fun only:
+
+* **bleeding-edge**
+* **nodejs-backend** (optional)
+* **backbone-client** (optional)
