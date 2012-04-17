@@ -2,8 +2,6 @@ package my.utm.cairo.prototype.client.widget;
 
 import com.extjs.gxt.ui.client.widget.form.TextField;
 
-import com.google.gwt.user.client.Window;
-
 public class AccountForm extends BaseFormWidget {
 
     private TextField<String> firstName; 
@@ -18,7 +16,6 @@ public class AccountForm extends BaseFormWidget {
         super();
 
         setFormAction(formName);
-        Window.alert(Window.Location.getHost() + "/" + formActionUrl);
 
         firstName = new TextField<String>();
         setFieldProperties(firstName, "First Name");

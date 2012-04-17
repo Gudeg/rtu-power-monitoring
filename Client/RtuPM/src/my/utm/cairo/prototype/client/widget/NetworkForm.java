@@ -11,8 +11,12 @@ public class NetworkForm extends BaseFormWidget {
     private TextField<String> dnsServer1; 
     private TextField<String> dnsServer2; 
 
+    private static final String formName = "network-form";
+
     public NetworkForm() {
         super();
+
+        setFormAction(formName);
 
         ipAddress = new TextField<String>();
         setFieldProperties(ipAddress, "Server IP Address");

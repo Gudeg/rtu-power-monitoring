@@ -9,8 +9,12 @@ public class PortForwardingForm extends BaseFormWidget {
     // other field already set
     private TextArea portForwardingConfig;  
 
+    private static final String formName = "portforwarding-form";
+
     public PortForwardingForm() {
         super();
+
+        setFormAction(formName);
 
         portForwardingConfig = new TextArea();
         portForwardingConfig.setPreventScrollbars(false);

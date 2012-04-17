@@ -17,8 +17,13 @@ public class FirmwareUpdateForm extends BaseFormWidget {
     private FileUploadField fupload; 
     private TextArea comment; 
 
+    private static final String formName = "firmwareupdate-form";
+
+
     public FirmwareUpdateForm() {
         super();
+
+        setFormAction(formName);
 
         form.setEncoding(Encoding.MULTIPART);
 

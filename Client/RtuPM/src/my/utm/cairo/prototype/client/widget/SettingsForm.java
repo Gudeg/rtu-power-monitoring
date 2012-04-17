@@ -7,7 +7,12 @@ public class SettingsForm extends BaseFormWidget {
     private TextField<String> rtuId; 
     private TextField<String> serverURL; 
 
+    private static final String formName = "settings-form";
+
     public SettingsForm() { 
+        super();
+
+        setFormAction(formName);
 
         rtuId = new TextField<String>();
         setFieldProperties(rtuId, "Remote Terminal ID");

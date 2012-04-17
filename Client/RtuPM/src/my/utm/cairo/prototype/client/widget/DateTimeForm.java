@@ -10,8 +10,12 @@ public class DateTimeForm extends BaseFormWidget {
     private DateField date; 
     private NumberField deleteLogInterval; 
 
+    private static final String formName = "datetime-form";
+
     public DateTimeForm() {
         super();
+
+        setFormAction(formName);
 
         time = new TimeField();
         time.setFieldLabel("Server Time");

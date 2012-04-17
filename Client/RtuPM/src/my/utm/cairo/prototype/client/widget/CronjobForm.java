@@ -8,9 +8,12 @@ public class CronjobForm extends BaseFormWidget {
     //       input
 
     private TextArea cronjobConfig; 
+    private static final String formName = "cronjob-form";
 
     public CronjobForm() {
         super();
+
+        setFormAction(formName);
 
         cronjobConfig = new TextArea(); 
         cronjobConfig.setPreventScrollbars(true);

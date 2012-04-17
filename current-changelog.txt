@@ -1,4 +1,20 @@
-Modify README.md
+17 April 2012: 
 
-Add Repository Structure inside README.md to give some details on how
-the branches will be
+Task:
+
+* Setup SQLite  
+* Form related functionality
+
+    * Each form has it's relevant table in SQLite 
+    
+        * Each write is transaction 
+
+    * Form related Tables: 
+
+        * account-form 
+        * cronjob-form 
+        * datetime-form
+        * firmwareupdate-form
+        * network-form
+        * portforwarding-form
+        * settings-form
