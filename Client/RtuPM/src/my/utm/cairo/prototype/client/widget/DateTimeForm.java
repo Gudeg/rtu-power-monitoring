@@ -15,8 +15,6 @@ public class DateTimeForm extends BaseFormWidget {
     public DateTimeForm() {
         super();
 
-        setFormAction(formName);
-
         time = new TimeField();
         time.setFieldLabel("Server Time");
         time.setAllowBlank(false);

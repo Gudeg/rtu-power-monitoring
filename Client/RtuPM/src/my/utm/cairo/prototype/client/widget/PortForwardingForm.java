@@ -14,8 +14,6 @@ public class PortForwardingForm extends BaseFormWidget {
     public PortForwardingForm() {
         super();
 
-        setFormAction(formName);
-
         portForwardingConfig = new TextArea();
         portForwardingConfig.setPreventScrollbars(false);
         portForwardingConfig.setHeight(200);

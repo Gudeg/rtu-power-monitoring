@@ -16,8 +16,6 @@ public class NetworkForm extends BaseFormWidget {
     public NetworkForm() {
         super();
 
-        setFormAction(formName);
-
         ipAddress = new TextField<String>();
         setFieldProperties(ipAddress, "Server IP Address");
         

@@ -11,14 +11,15 @@ There will be several (still proposal) branches:
 * **client** (GWT)
 * **client-primitive** (Non-js)
 * **backend** (PHP)
+* **DB**
 
-**client**, **client-primitive**, and **backend** will merge into 
-**development** while **development** will merge into **master** during 
+*client*, *client-primitive*, and *backend* will merge into 
+development* while *development* will merge into *master* during 
 release
 
-**nodejs-backend** and **backbone-client** will merge into **bleeding-edge**.
+*nodejs-backend* and **backbone-client** will merge into *bleeding-edge*.
 It just for fun and practice. However if proved to be useful will be
-merge into **development** and perhaps, **master**.
+merge into **development** and perhaps, *master*.
 
 Table 
 ----- 
@@ -153,6 +154,11 @@ Form:
     /post/portforwarding-form
         -> /index.php/post/portForwardingForm
 
+* Table (eg. Account Form): 
+
+    username (fk, pk), firstname(fk), lastname(fk), email(fk), 
+    password(fk), entry-date
+
 DataGrid request: 
 
     *DataGrid* will request from: 
@@ -169,5 +175,6 @@ Secret
 There are several repositories that is made for fun only:
 
 * **bleeding-edge**
-* **nodejs-backend** (optional)
-* **backbone-client** (optional)
+* **nodejs-backend** 
+* **backbone-client** 
+* **mongodb** 

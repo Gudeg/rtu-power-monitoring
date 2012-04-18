@@ -26,7 +26,5 @@ class Get extends CI_Controller {
     public function form($form_name) {
         // request from previous value from db 
         
-        $json_data = $form_name;
-        $this->return_json_output($json_data);
     }
 }

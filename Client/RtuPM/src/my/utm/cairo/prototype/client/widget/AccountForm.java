@@ -2,6 +2,18 @@ package my.utm.cairo.prototype.client.widget;
 
 import com.extjs.gxt.ui.client.widget.form.TextField;
 
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
+import com.google.gwt.http.client.URL;
+
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONString;
+
+import com.google.gwt.user.client.Window;
+
 public class AccountForm extends BaseFormWidget {
 
     private TextField<String> firstName; 
@@ -10,12 +22,15 @@ public class AccountForm extends BaseFormWidget {
     private TextField<String> password;
     private TextField<String> confirmPassword; 
 
+    private RequestCallback rcb; 
+    private RequestBuilder rb; 
+
     private static final String formName = "account-form";
 
     public AccountForm() {
         super();
 
-        setFormAction(formName);
+        setSubmitUrl(formName);
 
         firstName = new TextField<String>();
         setFieldProperties(firstName, "First Name");
@@ -52,6 +67,29 @@ public class AccountForm extends BaseFormWidget {
 
     @Override
     protected void send() {
+
+        JSONObject obj = new JSONObject();
+
+        obj.put("firstname", new JSONString(firstName.getValue()));
+        obj.put("lastName", new JSONString(lastName.getValue()));
+        obj.put("email", new JSONString(lastName.getValue()));
+        obj.put("password", new JSONString(password.getValue()));
+
+        rb = new RequestBuilder(RequestBuilder.POST, submitUrl);
+        rb.setHeader("content-type", 
+                "application/x-www-form-urlencoded");
+
+        try { 
+
+            String data = URL.encode("data=" + obj.toString());
+            rb.sendRequest(data, getDefaultRequestCallback());
+
+        } catch (RequestException e) { 
+
+            Window.alert("Post error: " + e.toString());
+
+        }
+
     }
 
     @Override 

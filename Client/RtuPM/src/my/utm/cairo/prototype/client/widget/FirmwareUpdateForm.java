@@ -23,8 +23,6 @@ public class FirmwareUpdateForm extends BaseFormWidget {
     public FirmwareUpdateForm() {
         super();
 
-        setFormAction(formName);
-
         form.setEncoding(Encoding.MULTIPART);
 
         firmwareName = new TextField<String>();

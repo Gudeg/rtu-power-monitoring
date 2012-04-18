@@ -19,9 +19,10 @@ import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.extjs.gxt.ui.client.widget.layout.FitLayout;
 import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 
-import com.google.gwt.core.client.GWT;
-
+import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.Response;
 import com.google.gwt.http.client.URL;
 
 import com.google.gwt.user.client.Window;
@@ -32,12 +33,14 @@ abstract public class BaseFormWidget extends ContentPanel {
     protected Button reset; 
     protected Button submit; 
     protected String targetURL;
-    protected RequestBuilder rb; 
-    protected String formActionUrl = "post/form/"; 
+    protected String submitUrl = "post/form/"; 
 
     private int minLength = 6;
     private boolean isPassword = false;
     private boolean allowBlank = false;
+
+    private RequestCallback rcb; 
+    protected RequestBuilder rb; 
 
     public BaseFormWidget() {
         setLayout(new FitLayout());
@@ -93,6 +96,7 @@ abstract public class BaseFormWidget extends ContentPanel {
 
     protected void onSubmit() {
         submit.disable();
+        send();
     }
 
     protected <T extends TextField> void setFieldProperties(T field, 
@@ -119,13 +123,40 @@ abstract public class BaseFormWidget extends ContentPanel {
         String label, boolean isPwd) {
 
         setFieldProperties(field, label, allowBlank, minLength, isPwd);
-
     }
 
-    protected void setFormAction(String formName) {
-        formActionUrl += formName;
-        form.setAction(URL.encode(
-            Window.Location.getHost() + "/" + formActionUrl));
+    protected void setSubmitUrl(String formName) {
+        submitUrl = URL.encode("http://" + Window.Location.getHost() + 
+            "/index.php/" + submitUrl +formName);
+    }
+
+    protected RequestCallback getDefaultRequestCallback() { 
+
+        rcb = new RequestCallback() {
+
+            @Override 
+            public void onError(Request req, Throwable e) {
+
+                Window.alert("Failed to connect: " + e.toString());
+
+            }
+
+            @Override
+            public void onResponseReceived(Request req, Response res) {
+                if (200 == res.getStatusCode()) {
+
+                    Window.alert("Form post success!");
+
+                } else { 
+
+                    Window.alert("Reply: Error");
+
+                }
+            }
+
+        };
+
+        return rcb;
     }
 
     protected abstract void validate();

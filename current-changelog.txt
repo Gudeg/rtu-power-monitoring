@@ -1,10 +1,14 @@
-17 April 2012: 
+18 April 2012: 
 
 Task:
 
 * Setup SQLite  
 * Form related functionality
 
+    * Change the POST to use standard codeigniter index.php since nginx 
+      return 304
+    * first deployment to the server
+    * send() functionality 
     * Each form has it's relevant table in SQLite 
     
         * Each write is transaction 
@@ -18,3 +22,5 @@ Task:
         * network-form
         * portforwarding-form
         * settings-form
+
+    * Encrypt password sent in account settings 
