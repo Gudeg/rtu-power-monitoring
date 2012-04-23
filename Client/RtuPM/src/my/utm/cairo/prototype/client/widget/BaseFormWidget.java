@@ -127,7 +127,7 @@ abstract public class BaseFormWidget extends ContentPanel {
 
     protected void setSubmitUrl(String formName) {
         submitUrl = URL.encode("http://" + Window.Location.getHost() + 
-            "/index.php/" + submitUrl +formName);
+            "/index.php/" + submitUrl + formName);
     }
 
     protected RequestCallback getDefaultRequestCallback() { 

@@ -4,8 +4,10 @@ import com.extjs.gxt.ui.client.Registry;
 
 import com.extjs.gxt.ui.client.Style.LayoutRegion;
 
+import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.Events;
 import com.extjs.gxt.ui.client.event.Listener;
+import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.event.WindowEvent;
 
 import com.extjs.gxt.ui.client.mvc.AppEvent;
@@ -80,8 +82,8 @@ public class AppView extends View {
                 AppView.user.set("password", 
                     AppView.dialog.getPassword());
 
-                AppView.user.set("email", 
-                    AppView.dialog.getEmail());
+                AppView.user.set("userid", 
+                    AppView.dialog.getUserId());
 
                 Dispatcher.get().dispatch(AppEvents.AUTH);
             }
@@ -131,6 +133,14 @@ public class AppView extends View {
         logOutToolTipConfig.setText("Exit from the application");
 
         logOut.setToolTip(logOutToolTipConfig);
+
+        logOut.addSelectionListener(new SelectionListener<ButtonEvent>(){
+            @Override 
+            public void componentSelected(ButtonEvent e) {
+                Dispatcher.get().dispatch(AppEvents.LOGOUT);
+            }
+        });
+
         toolbar.add(logOut);
         west.setBottomComponent(toolbar);
 

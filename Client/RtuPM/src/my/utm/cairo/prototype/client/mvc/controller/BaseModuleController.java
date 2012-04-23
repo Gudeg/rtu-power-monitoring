@@ -6,13 +6,11 @@ import com.extjs.gxt.ui.client.mvc.Controller;
 public class BaseModuleController extends Controller { 
     protected int modCode; 
 
+
     protected boolean checkPermission(int code) {
-        if ( (code & modCode) != 0) {
-            return true; 
-        } else { 
-            return false;
-        }
+        return (code & modCode) == modCode ? true : false; 
     }
+
     @Override 
     public void handleEvent(AppEvent e) {}
 

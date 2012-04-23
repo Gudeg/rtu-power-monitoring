@@ -37,5 +37,4 @@ public class BaseFolderView extends View {
         tree.setWidth(300);
         tree.setHeight(300);
     }
-
 }

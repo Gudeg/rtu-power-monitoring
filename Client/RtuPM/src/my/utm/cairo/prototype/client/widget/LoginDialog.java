@@ -31,11 +31,12 @@ import com.extjs.gxt.ui.client.widget.Status;
 import com.extjs.gxt.ui.client.widget.toolbar.FillToolItem;
 
 import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.Window;
 
 import my.utm.cairo.prototype.client.AppEvents;
 
 public class LoginDialog extends Dialog {
-    protected TextField<String> email; 
+    protected TextField<String> userid; 
     protected TextField<String> password; 
     protected Button reset;
     protected Button login;
@@ -66,11 +67,11 @@ public class LoginDialog extends Dialog {
             }
         };
 
-        email = new TextField<String>();
-        email.setMinLength(6);
-        email.setFieldLabel("Email Address");
-        email.addKeyListener(keyListener);
-        add(email);
+        userid = new TextField<String>();
+        userid.setMinLength(4);
+        userid.setFieldLabel("User ID");
+        userid.addKeyListener(keyListener);
+        add(userid);
 
         password = new TextField<String>();
         password.setMinLength(6);
@@ -79,7 +80,7 @@ public class LoginDialog extends Dialog {
         password.setPassword(true);
         add(password);
 
-        setFocusWidget(email);
+        setFocusWidget(userid);
     }
 
     @Override 
@@ -97,10 +98,10 @@ public class LoginDialog extends Dialog {
         reset.addSelectionListener(new SelectionListener<ButtonEvent>(){
             @Override
             public void componentSelected(ButtonEvent ce) {
-                email.reset();
+                userid.reset();
                 password.reset();
                 validate();
-                email.focus();
+                userid.focus();
             }
         });
 
@@ -132,6 +133,8 @@ public class LoginDialog extends Dialog {
             }
             pwd = hashed;
 
+            Window.alert(pwd);
+
         } catch (NoSuchAlgorithmException e) {
 
             Dispatcher.get().dispatch(AppEvents.ERROR, e);
@@ -154,16 +157,16 @@ public class LoginDialog extends Dialog {
 
     protected boolean hasValue(TextField<String> field) {
         return field.getValue() != null && 
-            field.getValue().length() > 6;
+            field.getValue().length() >= 4;
     }
 
     protected void validate() {
-        login.setEnabled(hasValue(email) && hasValue(password) &&
+        login.setEnabled(hasValue(userid) && hasValue(password) &&
             password.getValue().length() > 3);
     }
 
-    public String getEmail() {
-        return email.getValue(); 
+    public String getUserId() {
+        return userid.getValue(); 
     }
 
     public String getPassword() {

@@ -11,7 +11,7 @@ public class User extends BaseModelData implements Serializable {
 
     public User() {}
 
-    public User(int userid, String email, String fname, String lname, 
+    public User(String userid, String email, String fname, String lname, 
         int permission, String pwd, int grp, String comment) {
 
         set("userid", userid);
@@ -24,8 +24,8 @@ public class User extends BaseModelData implements Serializable {
         set("comment", comment);
     }
 
-    public int getUserId() { 
-        return (Integer) get("userid");
+    public String getUserId() { 
+        return (String) get("userid");
     }
 
     public String getEmail() {

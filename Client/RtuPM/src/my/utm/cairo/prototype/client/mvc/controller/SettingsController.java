@@ -19,7 +19,7 @@ public class SettingsController extends BaseModuleController {
         registerEventTypes(AppEvents.NAV_SETTINGS);
         registerEventTypes(AppEvents.NAV_DATE_TIME);
         registerEventTypes(AppEvents.NAV_ACCOUNT);
-        modCode = 2;
+        modCode = 32;
     }
 
     @Override 

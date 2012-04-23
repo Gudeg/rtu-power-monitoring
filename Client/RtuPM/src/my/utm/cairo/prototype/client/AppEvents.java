@@ -18,5 +18,6 @@ public class AppEvents {
     public static final EventType NAV_CRONJOB = new EventType();
     public static final EventType NAV_FIRMWARE= new EventType();
     public static final EventType NAV_FIRMWARE_UPDATE = new EventType();
+    public static final EventType LOGOUT = new EventType();
     
 }

@@ -22,7 +22,7 @@ public class DataController extends BaseModuleController {
         registerEventTypes(AppEvents.INIT);
         registerEventTypes(AppEvents.NAV_DATA);
         registerEventTypes(AppEvents.NAV_DATA_UPTIME);
-        modCode = 1;
+        modCode = 2;
     }
 
     // TODO: Can be converted to generic method on the parent 
@@ -36,7 +36,6 @@ public class DataController extends BaseModuleController {
             forwardToView(folderView, e);
             forwardToView(view, e);
             
-
         } else if (et == AppEvents.NAV_DATA) {
             forwardToView(view, e);
         } else if (et == AppEvents.NAV_DATA_UPTIME) {

@@ -21,7 +21,6 @@ public class FirmwareUpdateController extends BaseModuleController {
         modCode = 16;
     }
 
-
     @Override 
     public void handleEvent(AppEvent e) {
         EventType et = e.getType();

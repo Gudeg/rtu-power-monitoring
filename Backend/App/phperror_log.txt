@@ -28,3 +28,31 @@
 [18-Apr-2012 07:37:34 UTC] PHP Fatal error:  Call to a member function model() on a non-object in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 7
 [18-Apr-2012 07:38:38 UTC] PHP Fatal error:  Class 'Form' not found in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/system/core/Loader.php on line 303
 [18-Apr-2012 07:38:43 UTC] PHP Fatal error:  Class 'Form' not found in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/system/core/Loader.php on line 303
+[18-Apr-2012 09:13:02 UTC] PHP Warning:  Unterminated comment starting line 4 in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/models/form_model.php on line 4
+[18-Apr-2012 09:13:02 UTC] PHP Parse error:  syntax error, unexpected $end, expecting T_FUNCTION in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/models/form_model.php on line 14
+[18-Apr-2012 09:17:48 UTC] PHP Fatal error:  Call to undefined function form_equals() in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 25
+[18-Apr-2012 09:18:12 UTC] PHP Fatal error:  Call to undefined function form_equals() in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 25
+[18-Apr-2012 09:28:23 UTC] PHP Parse error:  syntax error, unexpected T_CONST, expecting T_VARIABLE in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 5
+[18-Apr-2012 09:53:32 UTC] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 66
+[18-Apr-2012 09:55:30 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 503316480 bytes) in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/system/core/Benchmark.php on line 53
+[18-Apr-2012 09:55:37 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 34
+[19-Apr-2012 03:20:23 UTC] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 36
+[19-Apr-2012 03:40:40 UTC] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 34
+[19-Apr-2012 03:41:26 UTC] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/models/form_model.php on line 14
+[19-Apr-2012 03:41:51 UTC] PHP Parse error:  syntax error, unexpected '}' in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/models/form_model.php on line 19
+[19-Apr-2012 03:43:00 UTC] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 34
+[19-Apr-2012 03:45:47 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 503316480 bytes) in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/system/core/Benchmark.php on line 53
+[19-Apr-2012 03:51:55 UTC] PHP Parse error:  syntax error, unexpected T_VARIABLE in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/models/form_model.php on line 13
+[19-Apr-2012 07:06:43 UTC] PHP Fatal error:  Using $this when not in object context in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/helpers/ini_helper.php on line 60
+[19-Apr-2012 14:08:15 UTC] PHP Parse error:  syntax error, unexpected ';' in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/models/user_model.php on line 20
+[20-Apr-2012 00:50:14 UTC] PHP Fatal error:  Call to a member function set_cronjob_form() on a non-object in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 55
+[20-Apr-2012 00:50:43 UTC] PHP Fatal error:  Call to a member function set_cronjob_form() on a non-object in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 55
+[20-Apr-2012 00:50:53 UTC] PHP Fatal error:  Call to a member function set_cronjob_form() on a non-object in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 55
+[20-Apr-2012 00:50:58 UTC] PHP Fatal error:  Call to a member function set_cronjob_form() on a non-object in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 55
+[20-Apr-2012 00:51:00 UTC] PHP Fatal error:  Call to a member function set_cronjob_form() on a non-object in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 55
+[20-Apr-2012 00:52:32 UTC] PHP Fatal error:  Call to a member function set_cronjob_form() on a non-object in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 55
+[20-Apr-2012 09:42:37 UTC] PHP Parse error:  syntax error, unexpected '[' in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 51
+[20-Apr-2012 09:45:10 UTC] PHP Parse error:  syntax error, unexpected T_OBJECT_OPERATOR in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 55
+[20-Apr-2012 09:46:05 UTC] PHP Parse error:  syntax error, unexpected T_PUBLIC in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 90
+[23-Apr-2012 01:53:39 UTC] PHP Fatal error:  Call to a member function do_upload() on a non-object in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 44
+[23-Apr-2012 01:57:56 UTC] PHP Fatal error:  Call to a member function do_upload() on a non-object in /Users/TheFruit/Project/rtu-power-monitoring/Backend/CodeIgniter/application/controllers/post.php on line 43

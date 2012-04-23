@@ -21,6 +21,7 @@ public class AccountForm extends BaseFormWidget {
     private TextField<String> email; 
     private TextField<String> password;
     private TextField<String> confirmPassword; 
+    private TextField<String> userId;
 
     private RequestCallback rcb; 
     private RequestBuilder rb; 
@@ -31,6 +32,9 @@ public class AccountForm extends BaseFormWidget {
         super();
 
         setSubmitUrl(formName);
+
+        userId = new TextField<String>();
+        setFieldProperties(userId, "User ID", true, 4, false);
 
         firstName = new TextField<String>();
         setFieldProperties(firstName, "First Name");
@@ -70,9 +74,10 @@ public class AccountForm extends BaseFormWidget {
 
         JSONObject obj = new JSONObject();
 
+        obj.put("userid", new JSONString(userId.getValue()));
         obj.put("firstname", new JSONString(firstName.getValue()));
         obj.put("lastName", new JSONString(lastName.getValue()));
-        obj.put("email", new JSONString(lastName.getValue()));
+        obj.put("email", new JSONString(email.getValue()));
         obj.put("password", new JSONString(password.getValue()));
 
         rb = new RequestBuilder(RequestBuilder.POST, submitUrl);

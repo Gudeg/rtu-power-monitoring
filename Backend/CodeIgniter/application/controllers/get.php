@@ -4,7 +4,17 @@ class Get extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->output->enable_profiler(false);
+        $this->load->model(user_model);
+
+        if ($this->user_model->check_session()) {
+
+            $this->output->enable_profiler(false);
+
+        } else { 
+
+            show_404();
+
+        }
     }
 
     public function index() {

@@ -36,8 +36,6 @@ class Test extends CI_Controller {
                     "uptime"=>3.0, "date"=>"1999-12-28"),
                 array("logid"=>13, "average_consumption"=>121.15, 
                     "uptime"=>1.0, "date"=>"1999-12-29"),
-                array("logid"=>14, "average_consumption"=>129.35, 
-                    "uptime"=>5.0, "date"=>"1999-12-30"),
             ));
 
         $this->output->set_content_type('application/json');
@@ -48,5 +46,14 @@ class Test extends CI_Controller {
 
         $this->output->set_content_type('text/plain');
         $this->output->set_output($limit);
+
     }
+
+    public function encrypt() { 
+
+        $value = substr(sha1("20eabe5d64b0e216796e834f52d61fd0b70332fc"), 0, 10);
+        $this->output->set_output($value);
+
+    }
+
 }

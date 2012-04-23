@@ -182,6 +182,7 @@ if (defined('ENVIRONMENT'))
 	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
 
 
+
 	// The path to the "application" folder
 	if (is_dir($application_folder))
 	{
@@ -196,6 +197,11 @@ if (defined('ENVIRONMENT'))
 
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
+
+    define('USERS_INI_PATH', APPPATH . "models/users.ini");
+    define('SERVERS_INI_PATH', APPPATH . "models/servers.ini");
+    define('ADMIN_LEVEL_PERMISSION',    128);
+    define('USER_LEVEL_PERMISSION', 64);
 
 /*
  * --------------------------------------------------------------------
