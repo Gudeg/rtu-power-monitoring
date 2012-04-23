@@ -37,4 +37,8 @@ class Get extends CI_Controller {
         // request from previous value from db 
         
     }
+
+    public function time_sync() {
+        // return the synced time
+    }
 }

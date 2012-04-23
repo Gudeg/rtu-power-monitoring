@@ -17,8 +17,8 @@ class Post extends CI_Controller {
             $this->error_not_authenticate();
 
         }
-
     }
+
 
     private function equals($str1, $str2) {
         if (strcmp($str1, $str2) === 0) {
@@ -60,8 +60,6 @@ class Post extends CI_Controller {
                 show_error($this->upload->display_errors(), 500);
 
             }
-
-
         }
     }
 
@@ -81,6 +79,7 @@ class Post extends CI_Controller {
 
         } else if ( $this->equals($form_name, "datetime-form") ) {
 
+            $this->time_sync($json_data);
 
         } else if ( $this->equals($form_name, "cronjob-form") ) {
 
@@ -105,7 +104,31 @@ class Post extends CI_Controller {
             $this->error_form_not_exists();
 
         }
-        print_r( $json_data);
+
+    }
+
+    private function time_sync($json_data) {
+
+        $dateval = $json_data['unix_time'];
+
+        $data = "#!/bin/sh
+        /bin/date -s $dateval > /dev/null 2 >&1
+        /sbin/hwclock --systohc
+        ";
+
+        print_r($data);
+
+        //$handle = fopen(SCRIPT_FILE, "w+");
+        //if(fwrite($handle, $data)) {
+
+        //} else { 
+
+        //}
+        if(true) {
+            $this->form_model->set_time_ini($json_data);
+        } 
+
+        //fclose($handle);
 
     }
 

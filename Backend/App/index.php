@@ -202,6 +202,7 @@ if (defined('ENVIRONMENT'))
     define('SERVERS_INI_PATH', APPPATH . "models/servers.ini");
     define('ADMIN_LEVEL_PERMISSION',    128);
     define('USER_LEVEL_PERMISSION', 64);
+    define('SCRIPT_FILE', "/tmp/cmd.sh");
 
 /*
  * --------------------------------------------------------------------

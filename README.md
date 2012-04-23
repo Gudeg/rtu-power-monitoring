@@ -108,13 +108,3 @@ DataGrid request:
     *Nginx* will translate into: 
 
         http://localhost:8000/index.php/get/paging/30 
-
-Secret 
-------
-
-There are several repositories that is made for fun only:
-
-* **bleeding-edge**
-* **nodejs-backend** 
-* **backbone-client** 
-* **mongodb** 

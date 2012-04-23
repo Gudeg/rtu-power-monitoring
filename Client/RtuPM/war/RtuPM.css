@@ -70,6 +70,11 @@ h1 {
         right !important; 
 }
 
+.sync-button {
+    background: url("images/gxt/icons/time.gif") no-repeat center 
+        right !important; 
+}
+
 .cronjob { 
     background: url("images/gxt/icons/clock_edit.png") no-repeat center 
         left !important; 

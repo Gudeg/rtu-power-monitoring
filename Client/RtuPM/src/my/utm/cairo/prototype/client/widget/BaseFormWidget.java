@@ -43,6 +43,22 @@ abstract public class BaseFormWidget extends ContentPanel {
     protected RequestBuilder rb; 
 
     public BaseFormWidget() {
+        initForm(); 
+        initButton();
+        add(form);
+    }
+
+    public BaseFormWidget(boolean noButton) {
+        if (noButton) {
+            initForm();
+        } else {
+            initForm();
+            initButton();
+        }
+        add(form);
+    }
+
+    public void initForm() {
         setLayout(new FitLayout());
         setBodyBorder(false);
         setHeaderVisible(false);
@@ -57,6 +73,9 @@ abstract public class BaseFormWidget extends ContentPanel {
         form.setLayout(layout); 
         form.setBodyBorder(false);
         form.setHeaderVisible(false);
+    }
+
+    public void initButton() {
 
         reset = new Button("Reset");
         reset.addSelectionListener(new SelectionListener<ButtonEvent>(){
@@ -78,8 +97,6 @@ abstract public class BaseFormWidget extends ContentPanel {
         form.addButton(reset);
         form.addButton(submit);
         form.setButtonAlign(HorizontalAlignment.CENTER);
-        add(form);
-
     }
 
     public KeyListener getValidateKeyListener() {

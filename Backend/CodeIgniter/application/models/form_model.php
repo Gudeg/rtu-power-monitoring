@@ -58,5 +58,14 @@ class Form_model extends CI_Model {
         }
     }
 
+    public function set_time_ini($json_data) {
+        $data['timezone'] =  $json_data['timezone'];
+        $data['last_update'] = $json_data['last_update'];
 
+        if (update_ini_file("time", $data, SERVERS_INI_PATH)) {
+
+        } else {
+
+        }
+    }
 }
