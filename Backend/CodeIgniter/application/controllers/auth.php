@@ -10,10 +10,6 @@ class Auth extends CI_Controller {
 
     }
 
-    public function index() {
-        $this->load->view('welcome_message');
-    }
-
     public function check() {
 
         if ( $this->user_model->check_session() ) {

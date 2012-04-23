@@ -33,8 +33,6 @@ public class DataFolderView extends BaseFolderView {
     // Folder indicate submenu
     private final Folder powerConsumption = 
         new Folder("Power Consumption");
-    private final Folder powerUptime = 
-        new Folder("Power Uptime");
         
     public DataFolderView(Controller controller) { 
         super(controller);
@@ -69,7 +67,7 @@ public class DataFolderView extends BaseFolderView {
         });
 
         // TODO: refactor this into one BaseFolderView class
-        setupTree(powerConsumption, powerUptime);
+        setupTree(powerConsumption);
 
         tree.getStyle().setLeafIcon(IconHelper.createStyle("data"));
 

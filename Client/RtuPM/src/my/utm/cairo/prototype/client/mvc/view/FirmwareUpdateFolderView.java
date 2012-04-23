@@ -23,7 +23,6 @@ import my.utm.cairo.prototype.client.mvc.model.Folder;
 public class FirmwareUpdateFolderView extends BaseFolderView {
     private static final String menuHeading = "Firmware";
 
-    private final Folder firmwareInfo = new Folder("Firmware Info");
     private final Folder firmwareUpdate = new Folder("Update Firmware");
 
     public FirmwareUpdateFolderView(Controller controller) { 
@@ -44,19 +43,21 @@ public class FirmwareUpdateFolderView extends BaseFolderView {
     }
 
     protected void initUI() {
+
         ContentPanel west = Registry.get(AppView.WEST_PANEL); 
         ContentPanel navEntry = new ContentPanel();
+
         navEntry.setAnimCollapse(false);
         navEntry.setHeading(menuHeading);
         navEntry.addListener(Events.Expand, 
             new Listener<ComponentEvent>() {
 
             public void handleEvent(ComponentEvent e) {
-                Dispatcher.get().dispatch(AppEvents.NAV_FIRMWARE);
+                Dispatcher.get().dispatch(AppEvents.NAV_FIRMWARE_UPDATE);
             }
         });
 
-        setupTree(firmwareInfo, firmwareUpdate);
+        setupTree(firmwareUpdate);
 
         tree.getSelectionModel().addSelectionChangedListener(
             new SelectionChangedListener<Folder>() {
@@ -66,11 +67,7 @@ public class FirmwareUpdateFolderView extends BaseFolderView {
                 String f = se.getSelection().get(0).getName();
                 AppEvent evt;
 
-                if ( f.equals(firmwareInfo.getName()) ) {
-
-                    evt = new AppEvent(AppEvents.NAV_FIRMWARE);
-                    
-                } else if ( f.equals(firmwareUpdate.getName()) ) {
+                if ( f.equals(firmwareUpdate.getName()) ) {
                     
                     evt = new AppEvent(AppEvents.NAV_FIRMWARE_UPDATE);
 
