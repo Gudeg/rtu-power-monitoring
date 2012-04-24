@@ -7,6 +7,7 @@ import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.URL;
 
 import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONString;
 
 import com.google.gwt.user.client.Window;
@@ -18,12 +19,8 @@ public class PortForwardingForm extends BaseFormWidget {
     // other field already set
     private TextArea portForwardingConfig;  
 
-    private static final String formName = "portforwarding-form";
-
     public PortForwardingForm() {
         super();
-
-        setSubmitUrl(formName);
 
         portForwardingConfig = new TextArea();
         portForwardingConfig.setPreventScrollbars(false);
@@ -32,6 +29,7 @@ public class PortForwardingForm extends BaseFormWidget {
         setFieldProperties(portForwardingConfig, 
             "Port Forwarding Config", true, 26, false);
 
+        postInitialize("portforwarding-form");
     }
 
     @Override 
@@ -41,27 +39,19 @@ public class PortForwardingForm extends BaseFormWidget {
         obj.put("port_forwarding_config", 
             new JSONString(portForwardingConfig.getValue()));
 
-        rb = new RequestBuilder(RequestBuilder.POST, submitUrl);
-        rb.setHeader("content-type", 
-                "application/x-www-form-urlencoded");
-
-        try { 
-
-            String data = URL.encode("data=" + obj.toString());
-            rb.sendRequest(data, getDefaultRequestCallback());
-
-        } catch (RequestException e) { 
-
-            Window.alert("Post error: " + e.toString());
-
-        }
-
+        sendJSONPost(obj);
     }
-
     @Override 
     protected void validate() {
 
         submit.setEnabled(true);
+
+    }
+    @Override 
+    protected void assignInitialValue() {
+
+        portForwardingConfig.setValue(
+            getFieldValue("port_forwarding_config"));
 
     }
 }

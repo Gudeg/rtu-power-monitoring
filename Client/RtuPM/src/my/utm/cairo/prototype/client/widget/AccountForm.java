@@ -31,8 +31,6 @@ public class AccountForm extends BaseFormWidget {
     public AccountForm() {
         super();
 
-        setSubmitUrl(formName);
-
         userId = new TextField<String>();
         setFieldProperties(userId, "User ID", true, 4, false);
 
@@ -52,6 +50,8 @@ public class AccountForm extends BaseFormWidget {
         confirmPassword = new TextField<String>();
         setFieldProperties(confirmPassword, "Confirm Password", true);
         confirmPassword.setPassword(true);
+
+        postInitialize("account-form");
     }
 
     private boolean passwordMatch() {
@@ -80,27 +80,22 @@ public class AccountForm extends BaseFormWidget {
         obj.put("email", new JSONString(email.getValue()));
         obj.put("password", new JSONString(password.getValue()));
 
-        rb = new RequestBuilder(RequestBuilder.POST, submitUrl);
-        rb.setHeader("content-type", 
-                "application/x-www-form-urlencoded");
-
-        try { 
-
-            String data = URL.encode("data=" + obj.toString());
-            rb.sendRequest(data, getDefaultRequestCallback());
-
-        } catch (RequestException e) { 
-
-            Window.alert("Post error: " + e.toString());
-
-        }
-
+        sendJSONPost(obj);
     }
 
     @Override 
     protected void validate() {
 
         submit.setEnabled(passwordMatch());
+    }
+
+    @Override 
+    protected void assignInitialValue() {
+
+        userId.setValue(getFieldValue("userid"));
+        firstName.setValue(getFieldValue("firstname"));
+        lastName.setValue(getFieldValue("lastName"));
+        email.setValue(getFieldValue("email"));
 
     }
 }

@@ -68,4 +68,13 @@ class Form_model extends CI_Model {
 
         }
     }
+
+    public function set_settings_form($json_data) {
+
+        if (update_ini_file("settings", $json_data, SERVERS_INI_PATH)) {
+
+        } else {
+
+        }
+    }
 }

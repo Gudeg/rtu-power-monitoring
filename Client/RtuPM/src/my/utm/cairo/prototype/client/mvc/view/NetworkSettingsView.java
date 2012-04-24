@@ -30,6 +30,7 @@ public class NetworkSettingsView extends BaseWidgetView {
 
     private void setupNetworkSettingsForm() {
 
+        networkSettingsForm.fetchInitialValue();
         container.setHeading("Network Settings");
         container.add(networkSettingsForm, center);
         container.setIconStyle("net-icon");
@@ -38,6 +39,7 @@ public class NetworkSettingsView extends BaseWidgetView {
 
     private void setupPortForwardingForm() {
         
+        portForwardingForm.fetchInitialValue();
         container.setHeading("Port Forwarding");
         container.add(portForwardingForm, center);
         container.setIconStyle("port-icon");

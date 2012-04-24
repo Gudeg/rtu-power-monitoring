@@ -33,6 +33,7 @@ public class SettingsView extends BaseWidgetView {
 
     private void setupSettingsForm() {
 
+        settingsForm.fetchInitialValue();
         container.setHeading("General Settings");
         container.add(settingsForm, center);
         container.setIconStyle("general-settings");
@@ -41,6 +42,7 @@ public class SettingsView extends BaseWidgetView {
 
     private void setupDateTimeForm() {
 
+        dateTimeForm.fetchInitialValue();
         container.setHeading("Date and Time Settings");
         container.add(dateTimeForm, center);
         container.setIconStyle("date-icon");
@@ -48,6 +50,8 @@ public class SettingsView extends BaseWidgetView {
     }
 
     private void setupAccountForm() {
+
+        accountForm.fetchInitialValue();
         container.setHeading("Account Settings");
         container.add(accountForm, center);
         container.setIconStyle("user-icon");

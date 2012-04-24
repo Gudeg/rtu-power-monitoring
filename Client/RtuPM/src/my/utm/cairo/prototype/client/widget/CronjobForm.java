@@ -17,39 +17,25 @@ public class CronjobForm extends BaseFormWidget {
     //       input
 
     private TextArea cronjobConfig; 
-    private static final String formName = "cronjob-form";
 
     public CronjobForm() {
         super();
 
-        setSubmitUrl(formName);
         cronjobConfig = new TextArea(); 
         cronjobConfig.setPreventScrollbars(true);
         cronjobConfig.setHeight(200);
         setFieldProperties(cronjobConfig, "Scheduler (Crontab)");
-
+        
+        postInitialize("cronjob-form");
     }
 
     @Override
     protected void send() {
-        JSONObject obj = new JSONObject();
 
+        JSONObject obj = new JSONObject();
         obj.put("crontab", new JSONString(cronjobConfig.getValue()));
 
-        rb = new RequestBuilder(RequestBuilder.POST, submitUrl);
-        rb.setHeader("content-type", 
-                "application/x-www-form-urlencoded");
-
-        try { 
-
-            String data = URL.encode("data=" + obj.toString());
-            rb.sendRequest(data, getDefaultRequestCallback());
-
-        } catch (RequestException e) { 
-
-            Window.alert("Post error: " + e.toString());
-
-        }
+        sendJSONPost(obj);
     }
 
     @Override 
@@ -59,4 +45,10 @@ public class CronjobForm extends BaseFormWidget {
 
     }
 
+    @Override
+    protected void assignInitialValue() {
+
+        cronjobConfig.setValue(getFieldValue("crontab"));
+
+    }
 }

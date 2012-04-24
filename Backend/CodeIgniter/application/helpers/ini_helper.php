@@ -13,7 +13,7 @@ if ( ! function_exists('write_ini_file') ) {
         $content = ""; 
         if ($has_sections) { 
             foreach ($assoc_arr as $key=>$elem) { 
-                $content .= "[".$key."]\n"; 
+                $content .= "\n[".$key."]\n"; 
                 foreach ($elem as $key2=>$elem2) { 
                     if(is_array($elem2)) 
                     { 
@@ -75,3 +75,14 @@ if ( ! function_exists('update_ini_file') ) {
         }
     }
 }
+
+if ( ! function_exists('parse_ini_to_json') ) {
+
+    function parse_ini_to_json($path, $indices) {
+
+        $ini = parse_ini_file($path, true);
+        return json_encode($ini[$indices]);
+
+    }
+}
+

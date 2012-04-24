@@ -27,6 +27,7 @@ public class SchedulerView extends BaseWidgetView {
 
     private void setupCronjobForm() {
 
+        cronjobForm.fetchInitialValue();
         container.setHeading("Crontab config");
         container.add(cronjobForm, center); 
         container.setIconStyle("cronjob");

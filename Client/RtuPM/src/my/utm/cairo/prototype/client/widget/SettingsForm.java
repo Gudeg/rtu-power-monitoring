@@ -2,28 +2,25 @@ package my.utm.cairo.prototype.client.widget;
 
 import com.extjs.gxt.ui.client.widget.form.TextField;
 
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONString;
+
 public class SettingsForm extends BaseFormWidget {
 
     private TextField<String> rtuId; 
     private TextField<String> serverURL; 
 
-    private static final String formName = "settings-form";
-
     public SettingsForm() { 
         super();
 
         rtuId = new TextField<String>();
-        setFieldProperties(rtuId, "Remote Terminal ID");
+        setFieldProperties(rtuId, "Remote Terminal ID", false, 2, false);
 
         // TODO: URL validation
         serverURL = new TextField<String>();
-        setFieldProperties(
-            serverURL, "Server Location <URL>");
-    }
+        setFieldProperties(serverURL, "Server Location", false, 3, false);
 
-    @Override
-    protected void send() {
-        // TODO: format to json first then send the post request
+        postInitialize("settings-form");
     }
 
     private boolean hasValue(TextField<String> field, int len) {
@@ -32,8 +29,25 @@ public class SettingsForm extends BaseFormWidget {
     }
 
     @Override
+    protected void send() {
+        JSONObject obj = new JSONObject();
+
+        obj.put("rtu_id", 
+            new JSONString(rtuId.getValue()));
+        obj.put("server_location", 
+            new JSONString(serverURL.getValue()));
+
+        sendJSONPost(obj);
+    }
+    @Override
     protected void validate() {
-        submit.setEnabled(hasValue(rtuId, 7) && 
-            hasValue(serverURL, 12));
+        submit.setEnabled(hasValue(rtuId, 1) && 
+            hasValue(serverURL, 3));
+    }
+    @Override
+    protected void assignInitialValue() {
+
+        rtuId.setValue(getFieldValue("rtu_id"));
+        serverURL.setValue(getFieldValue("server_location"));
     }
 }

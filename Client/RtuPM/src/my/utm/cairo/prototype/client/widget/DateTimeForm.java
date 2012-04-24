@@ -25,6 +25,7 @@ import com.google.gwt.json.client.JSONNumber;
 import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONString;
 
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 
 public class DateTimeForm extends BaseFormWidget { 
@@ -37,15 +38,11 @@ public class DateTimeForm extends BaseFormWidget {
     private LabelField timeZone; 
     private LabelField lastUpdate; 
 
-    private static final String formName = "datetime-form";
-
     public DateTimeForm() {
         super(true);
 
-        setSubmitUrl(formName);
-
         serverTime = new LabelField();
-        serverTime.setFieldLabel("Server Time: ");
+        serverTime.setFieldLabel("Current Server Time: ");
 
         timeZone = new LabelField();
         timeZone.setFieldLabel("Time Zone: ");
@@ -71,8 +68,17 @@ public class DateTimeForm extends BaseFormWidget {
         autoTimeSync.addSelectionListener(autoSyncListener);
         autoTimeSync.setIcon(IconHelper.createStyle("sync-button"));
 
-        form.setButtonAlign(HorizontalAlignment.CENTER);
+        form.setButtonAlign(HorizontalAlignment.LEFT);
         form.addButton(autoTimeSync);
+
+        postInitialize("datetime-form");
+        Timer t = new Timer() {
+            @Override 
+            public void run() {
+                DateTimeForm.this.fetchInitialValue();
+            }
+        };
+        t.scheduleRepeating(1000);
     }
 
     private void defaultTimeSync() {
@@ -102,20 +108,7 @@ public class DateTimeForm extends BaseFormWidget {
         timeZone.setText("GMT " + plusOrMinusGMT(now));
         lastUpdate.setText(now.toString()); 
 
-        rb = new RequestBuilder(RequestBuilder.POST, submitUrl);
-        rb.setHeader("content-type", 
-            "application/x-www-form-urlencoded");
-
-        try {
-
-            String data = URL.encode("data=" + obj.toString());
-            rb.sendRequest(data, getDefaultRequestCallback());
-
-        } catch (RequestException e) {
-
-            Window.alert("Post Error: " + e.toString());
-
-        }
+        sendJSONPost(obj);
     }
 
     private String plusOrMinusGMT(Date date) {
@@ -127,5 +120,13 @@ public class DateTimeForm extends BaseFormWidget {
         } else {
             return "-" + timezone_offset;
         }
+    }
+
+    @Override 
+    protected void assignInitialValue() {
+
+        serverTime.setText(getFieldValue("server_time"));
+        timeZone.setText(getFieldValue("timezone"));
+        lastUpdate.setText(getFieldValue("last_update"));
     }
 }

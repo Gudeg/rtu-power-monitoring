@@ -19,20 +19,11 @@ class Post extends CI_Controller {
         }
     }
 
-
-    private function equals($str1, $str2) {
-        if (strcmp($str1, $str2) === 0) {
-            return true; 
-        } else { 
-            return false; 
-        }
-    }
-
     public function upload($form_name) { 
 
         $base_uload_dir = APPPATH . "models/uploads/";
 
-        if ( $this->equals($form_name, "firmwareupdate-form") ) {
+        if ( equals($form_name, "firmwareupdate-form") ) {
 
             $config['upload_path'] = $base_uload_dir . "firmware";
             $config['overwrite'] = true;
@@ -73,30 +64,32 @@ class Post extends CI_Controller {
 
         }
 
-        if ( $this->equals($form_name, "account-form") ) {
+        if ( equals($form_name, "account-form") ) {
 
             $this->form_model->set_account_form($json_data);
 
-        } else if ( $this->equals($form_name, "datetime-form") ) {
+        } else if ( equals($form_name, "datetime-form") ) {
 
             $this->time_sync($json_data);
 
-        } else if ( $this->equals($form_name, "cronjob-form") ) {
+        } else if ( equals($form_name, "cronjob-form") ) {
 
             $this->form_model->set_cronjob_form($json_data);
 
 
-        } else if ( $this->equals($form_name, "network-form") ) {
+        } else if ( equals($form_name, "network-form") ) {
 
             $this->form_model->set_network_form($json_data);
 
 
-        } else if ( $this->equals($form_name, "portforwarding-form") ) {
+        } else if ( equals($form_name, "portforwarding-form") ) {
 
             $this->form_model->set_portforwarding_form($json_data);
 
 
-        } else if ( $this->equals($form_name, "settings-form") ) {
+        } else if ( equals($form_name, "settings-form") ) {
+
+            $this->form_model->set_settings_form($json_data);
 
 
         } else {

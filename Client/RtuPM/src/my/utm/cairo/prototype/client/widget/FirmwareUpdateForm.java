@@ -59,6 +59,8 @@ public class FirmwareUpdateForm extends BaseFormWidget {
         form.setAction(targetURL);
         form.setEncoding(Encoding.MULTIPART);
         form.setMethod(Method.POST);
+
+        postInitialize("firmwareupdate-form");
     }
 
     @Override
@@ -71,5 +73,12 @@ public class FirmwareUpdateForm extends BaseFormWidget {
     @Override 
     protected void send() {
         form.submit();
+    }
+
+    @Override 
+    protected void assignInitialValue() {
+
+        firmwareName.setValue(getFieldValue("firmware_name"));
+        version.setValue(Integer.parseInt(getFieldValue("version")));
     }
 }

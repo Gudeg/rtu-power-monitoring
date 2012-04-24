@@ -26,13 +26,9 @@ public class FirmwareUpdateView extends BaseWidgetView {
 
     }
 
-    private void setupFirmwareInfo() {
-    
-        container.setHeading("Firmware Info");
-    } 
-
     private void setupFirmwareUpdateForm() {
 
+        firmwareUpdateForm.fetchInitialValue();
         container.setHeading("Firmware Update Form");
         container.add(firmwareUpdateForm, center); 
         container.setIconStyle("tree-folder-open");
@@ -46,11 +42,7 @@ public class FirmwareUpdateView extends BaseWidgetView {
 
         EventType et = e.getType();
 
-        if (et == AppEvents.NAV_FIRMWARE) {
-
-            setupFirmwareInfo();
-
-        } else if (et == AppEvents.NAV_FIRMWARE_UPDATE) { 
+        if (et == AppEvents.NAV_FIRMWARE_UPDATE) { 
 
             setupFirmwareUpdateForm();
 

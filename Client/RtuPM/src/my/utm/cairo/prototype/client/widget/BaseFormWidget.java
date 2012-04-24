@@ -22,8 +22,12 @@ import com.extjs.gxt.ui.client.widget.layout.FormLayout;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.http.client.URL;
+
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONParser;
 
 import com.google.gwt.user.client.Window;
 
@@ -34,13 +38,17 @@ abstract public class BaseFormWidget extends ContentPanel {
     protected Button submit; 
     protected String targetURL;
     protected String submitUrl = "post/form/"; 
+    protected String getUrl = "get/form/";
+
+    protected JSONObject initialValue; 
 
     private int minLength = 6;
     private boolean isPassword = false;
     private boolean allowBlank = false;
 
-    private RequestCallback rcb; 
     protected RequestBuilder rb; 
+
+    protected String formName; 
 
     public BaseFormWidget() {
         initForm(); 
@@ -73,6 +81,10 @@ abstract public class BaseFormWidget extends ContentPanel {
         form.setLayout(layout); 
         form.setBodyBorder(false);
         form.setHeaderVisible(false);
+    }
+
+    public void postInitialize(final String formName) {
+        setSubmitUrl(formName);
     }
 
     public void initButton() {
@@ -142,14 +154,17 @@ abstract public class BaseFormWidget extends ContentPanel {
         setFieldProperties(field, label, allowBlank, minLength, isPwd);
     }
 
-    protected void setSubmitUrl(String formName) {
+    private void setSubmitUrl(String formName) {
         submitUrl = URL.encode("http://" + Window.Location.getHost() + 
             "/index.php/" + submitUrl + formName);
+        getUrl = URL.encode("http://" + Window.Location.getHost() + 
+            "/index.php/" + getUrl + formName);
     }
 
-    protected RequestCallback getDefaultRequestCallback() { 
+    protected RequestCallback getDefaultRequestCallback(
+        final String success, final String failure) {
 
-        rcb = new RequestCallback() {
+        return new RequestCallback() {
 
             @Override 
             public void onError(Request req, Throwable e) {
@@ -162,20 +177,92 @@ abstract public class BaseFormWidget extends ContentPanel {
             public void onResponseReceived(Request req, Response res) {
                 if (200 == res.getStatusCode()) {
 
-                    Window.alert("Form post success!");
+                    Window.alert(success);
 
                 } else { 
 
-                    Window.alert("Reply: Error");
+                    Window.alert(failure);
 
                 }
             }
 
         };
+    }
 
-        return rcb;
+    protected RequestCallback getDefaultRequestCallback() { 
+        return getDefaultRequestCallback(
+            "Form post success!", "Reply: Error");
     }
 
     protected abstract void validate();
     protected abstract void send(); 
+    protected abstract void assignInitialValue();
+
+    protected boolean sendJSONPost(JSONObject obj) {
+
+        rb = new RequestBuilder(RequestBuilder.POST, submitUrl); 
+        rb.setHeader("content-type", 
+            "application/x-www-form-urlencoded");
+
+        try { 
+
+            String data = URL.encode("data=" + obj.toString());
+            rb.sendRequest(data, getDefaultRequestCallback());
+            return true; 
+
+        } catch (RequestException e) { 
+            
+            Window.alert("Post error: " + e.toString());
+            return false;
+
+        }
+    }
+
+    public void fetchInitialValue() {
+        RequestBuilder fetch = new RequestBuilder(RequestBuilder.GET, 
+            getUrl);
+
+        try { 
+
+            fetch.sendRequest(null, new RequestCallback() {
+
+                @Override 
+                public void onError(Request req, Throwable e) {
+
+                    Window.alert("Failed to connect: " + e.toString());
+
+                }
+
+                @Override
+                public void onResponseReceived(Request req, Response res) {
+                    if (200 == res.getStatusCode()) {
+
+                        initialValue = 
+                            JSONParser.parse(res.getText()).isObject();
+
+                        assignInitialValue();
+
+                    } else { 
+
+                        Window.alert("Error retrieving form JSON Value");
+                        initialValue = null;
+
+                    }
+                }
+            });
+
+        } catch (RequestException e) {
+
+            Window.alert("Get error: " + e.toString());
+
+        }
+    }
+
+    protected String getFieldValue(String key) {
+
+        return initialValue.get(key).toString()
+            .replace("\"", "")
+            .replace("\\n", "\n")
+            .replace("\\t", "\t");
+    }
 }

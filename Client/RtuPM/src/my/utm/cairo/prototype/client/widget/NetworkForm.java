@@ -2,11 +2,15 @@ package my.utm.cairo.prototype.client.widget;
 
 import com.extjs.gxt.ui.client.widget.form.TextField;
 
+import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
 import com.google.gwt.http.client.URL;
 
 import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONString;
 
 import com.google.gwt.user.client.Window;
@@ -19,12 +23,8 @@ public class NetworkForm extends BaseFormWidget {
     private TextField<String> dnsServer1; 
     private TextField<String> dnsServer2; 
 
-    private static final String formName = "network-form";
-
     public NetworkForm() {
         super();
-
-        setSubmitUrl(formName);
 
         ipAddress = new TextField<String>();
         setFieldProperties(ipAddress, "Server IP Address");
@@ -41,15 +41,14 @@ public class NetworkForm extends BaseFormWidget {
         dnsServer2 = new TextField<String>();
         setFieldProperties(dnsServer2, "DNS Server 2");
 
+        postInitialize("network-form");
     }
-
     @Override 
     protected void validate() {
 
         submit.setEnabled(true);
 
     }
-
     @Override
     protected void send() {
 
@@ -65,24 +64,22 @@ public class NetworkForm extends BaseFormWidget {
             new JSONString(defaultGateway.getValue()));
 
         obj.put("dns_server1", 
-            new JSONString(defaultGateway.getValue()));
+            new JSONString(dnsServer1.getValue()));
 
         obj.put("dns_server2", 
-            new JSONString(defaultGateway.getValue()));
+            new JSONString(dnsServer2.getValue()));
 
-        rb = new RequestBuilder(RequestBuilder.POST, submitUrl);
-        rb.setHeader("content-type", 
-                "application/x-www-form-urlencoded");
-        
-        try { 
+        sendJSONPost(obj);
+    }
 
-            String data = URL.encode("data=" + obj.toString());
-            rb.sendRequest(data, getDefaultRequestCallback());
+    @Override 
+    protected void assignInitialValue() {
 
-        } catch (RequestException e) { 
+        ipAddress.setValue(getFieldValue("server_ip_address"));
+        subnetMask.setValue(getFieldValue("subnet_mask"));
+        defaultGateway.setValue(getFieldValue("default_gateway"));
+        dnsServer1.setValue(getFieldValue("dns_server1"));
+        dnsServer2.setValue(getFieldValue("dns_server2"));
 
-            Window.alert("Post error: " + e.toString());
-
-        }
     }
 }
