@@ -1,110 +1,52 @@
 Remote Terminal Unit for Power Monitoring System 
 ================================================
 
-TODO:
------
-
-* Write error helper 
-
 Repository Structures
 ---------------------
 
-There will be several (still proposal) branches: 
-
 * **master**
+* **bugfix**
 * **development**
-* **client** (GWT)
-* **client-primitive** (Non-js)
-* **backend** (PHP)
-* **DB**
-
-*client*, *client-primitive*, and *backend* will merge into 
-development* while *development* will merge into *master* during 
-release
-
-*nodejs-backend* and **backbone-client** will merge into *bleeding-edge*.
-It just for fun and practice. However if proved to be useful will be
-merge into **development** and perhaps, *master*.
+* **development-bugfix**
+* **client-primitive** (Non-JS capable client, planned)
+* **client-primitive-bugfix**
+* **client-primitive-development** (Non-JS capable client, planned)
+* **client-primitive-development-bugfix** (Non-JS capable client, planned)
 
 Config 
 ------
 
-user.ini: 
+Each user is stored in .../model/users.ini: 
 
+[admin]
 userid = 
-firstname =
-lastname = 
-email = 
-password = "b9d41f5f3847c78f74cfcc418a58550f6c535f31"
-permission = 
-last_session = 
+...
 
-firstname = 
-lastname = 
-email = 
-password =
-permission = 
+[AliBaba]
+userid =
+...
 
-server.ini: 
-
-[server]
-remote_terminal_id = 
-server_location = 
-
-[time]
-server_time =
-server_date =
-delete_log_after = 
-
-[network]
-server_ip_address = 
-subnet_mask = 
-default_gateway = 
-dns_server1 = 
-dns_server2 = 
-
-[forwarding]
-port_forwarding_config = 
-
-[cron]
-crontab = 
-
-[firmware] 
-firmware_name =
-version =
-comment = 
+The most recent settings will be stored in .../model/server.ini: 
 
 Design 
 ------
 
 Form: 
+
 * Before the form loaded, the form is filled with previous entry. The
-  data is received from. 
+  data is received from index.php/get/form/[form-name], eg:
 
-    /get/prev/network-setting-form 
-    /get/prev/port-forwarding-form
+    index.php/get/form/network-setting-form 
+    index.php/get/form/port-forwarding-form
 
-    which nginx will 
+* Each form will post into something like /post/[form-name], eg:
 
-* Each form will post into something like /post/widget-name. Eg:
+    /index.php/post/networkSettingsForm
 
-    /post/network-setting-form
-        -> /index.php/post/networkSettingsForm
-
-    /post/portforwarding-form
-        -> /index.php/post/portForwardingForm
-
-* Table (eg. Account Form): 
-
-    username (fk, pk), firstname(fk), lastname(fk), email(fk), 
-    password(fk), entry-date
+    /index.php/post/portForwardingForm
 
 DataGrid request: 
 
-    *DataGrid* will request from: 
+    *DataGrid* widget will request from: 
         
-        http://localhost:8080/get/paging?limit=30
-
-    *Nginx* will translate into: 
-
-        http://localhost:8000/index.php/get/paging/30 
+        http://localhost:8080/index.php/get/paging?limit=30
