@@ -6,30 +6,51 @@
  *
  */
 
-if ( ! function_exists('rw_timer') ) {
+if ( ! function_exists('rw') ) {
 
-    function rw_timer($duration=60) {
+    function rw() { 
+
+
+        $command = escapeshellcmd("rw");
+        exec($command, $output, $status);
+
 
     }
+
 }
 
-if ( ! function_exists('rw_remaining') ) { 
+if ( ! function_exists('ro') ) {
 
-    function rw_remaining() {
-        $n = 0;
+    function ro() {
 
+        $command = escapeshellcmd("ro");
+        exec($command, $output, $status);
 
-        return n;
     }
 
+}
+
+if ( ! function_exists('rwtimer') ) {
+
+    function save_rw($callback) {
+        if ( is_callable($callback) ) {
+            rw();
+            $result = $callback();
+            ro();
+
+            if ($result !== null) {
+                return $result; 
+            } else {
+                return $null;
+            }
+        }
+    }
 }
 
 if ( ! function_exists('write_ini_file') ) {
 
     function write_ini_file($assoc_arr, $path, $has_sections=FALSE) {
-        rw_timer();
         $content = ""; 
-
         if ($has_sections) { 
             foreach ($assoc_arr as $key=>$elem) { 
                 $content .= "\n[".$key."]\n"; 
@@ -64,8 +85,8 @@ if ( ! function_exists('write_ini_file') ) {
             return false; 
         } 
         if (!fwrite($handle, $content)) { 
-            return false; 
             fclose($handle);
+            return false; 
         } 
         fclose($handle); 
         return true; 
@@ -83,15 +104,11 @@ if ( ! function_exists('update_ini_file') ) {
         $_data = parse_ini_file($path, true);
         $_data[$indices] = $data;
 
-        if ( write_ini_file($_data, $path, true) ) {
+        rw();
+        $result = write_ini_file($_data, $path, true); 
+        ro(); 
 
-            return true ;
-
-        } else { 
-
-            return false; 
-
-        }
+        return $result;
     }
 }
 
@@ -104,4 +121,3 @@ if ( ! function_exists('parse_ini_to_json') ) {
 
     }
 }
-

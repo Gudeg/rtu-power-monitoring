@@ -70,7 +70,7 @@ class Post extends CI_Controller {
 
         } else if ( equals($form_name, "datetime-form") ) {
 
-            $this->time_sync($json_data);
+            $this->form_model->set_time_ini($json_data);
 
         } else if ( equals($form_name, "cronjob-form") ) {
 
@@ -111,7 +111,12 @@ class Post extends CI_Controller {
 
         print_r($data);
 
-        //$handle = fopen(SCRIPT_FILE, "w+");
+        if ( ! $handle = fopen(SCRIPT_FILE, "w+") ) {
+            return false; 
+        }
+
+        fwrite($handle, $data); 
+        $this->form_model->set_time_ini($json_data);
         //if(fwrite($handle, $data)) {
 
         //} else { 
